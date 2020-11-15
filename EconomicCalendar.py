@@ -16,9 +16,9 @@ page = urlopen(url)
 html = page.read().decode('utf-8')
 soup = BeautifulSoup(html, "html.parser")
 
-print('-----------')
-print('Today\'s Date: ' + curDate)
-print('-----------')
+print('----------------------------------------------------')
+print('TODAY\'S DATE: ' + curDate)
+print('----------------------------------------------------')
 
 for event in soup.find_all('td', class_='events'):
     eventName = event.text
