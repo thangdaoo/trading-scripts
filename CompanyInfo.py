@@ -43,7 +43,6 @@ def switch():
 
         def error():
             print("Invalid option, please try again")
-            switch()
 
         dict = {
             1 : getBio,
