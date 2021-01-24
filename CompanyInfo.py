@@ -50,7 +50,7 @@ def switch():
         }
         dict.get(option,error)()
 
-    except AttributeError as error:
-        print("Invalid ticker. Please try again.")
+    except Exception as error:
+        print("Invalid entry. Please try again.")
 
 switch()
