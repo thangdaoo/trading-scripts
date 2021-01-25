@@ -17,11 +17,7 @@ print('----------------------------------------------------')
 print('TODAY\'S DATE: ' + curDate)
 print('----------------------------------------------------')
 
-remainingTradeDays = soup.find('p', class_="center fontsize3").text
-remainingTradeDays = remainingTradeDays.replace('***', '')
-print(remainingTradeDays)
-
 info = soup.find('div', class_="calbox blockcenter1 center")
 print(info.text)
 
-print('NOTE: Regular market hours are 9:30am–4:00pm EST. Short sessions end at 1:00pm EST.')
+print('NOTE: Regular market hours are 9:30am – 4:00pm EST. Short sessions end at 1:00pm EST.')
