@@ -1,7 +1,5 @@
 import pandas as pd
 import numpy as np
-import re
-from bs4 import BeautifulSoup as bs
 import requests
 from bs4 import BeautifulSoup
 
@@ -42,7 +40,7 @@ def switch():
                 print(df)
 
         def error():
-            print("Invalid option, please try again")
+            print("Invalid option. Please try again")
 
         dict = {
             1 : getBio,
