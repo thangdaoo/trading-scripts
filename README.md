@@ -12,3 +12,5 @@ Here are a couple of Python scripts I created to assist me in my day trading jou
   - next market closure
 4. UpcomingEarnings
   - list of upcoming earnings
+
+Sources: www.finviz.com, us.econoday.com, www.swingtradesystems.com, www.seekingalpha.com
