@@ -1,6 +1,6 @@
 # Trading Scripts
 
-Here are a couple of Python scripts I created to assist me in my day trading journey.
+During my venture to become a consistently profitable day trader, I created a couple of Python scripts to assist me in this journey.
 
 ## Requirements
 
