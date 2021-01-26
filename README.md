@@ -3,7 +3,7 @@ Here are a couple of Python scripts I created to assist me in my day trading jou
 
 1. CompanyInfo
   - company bio
-  - detailed market information of a given company
+  - detailed market information of the company
 2. EconomicCalendar
   - major economic events of the current trading week
 3. TradingDaysCalendar
