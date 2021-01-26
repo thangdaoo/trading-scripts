@@ -13,4 +13,4 @@ Here are a couple of Python scripts I created to assist me in my day trading jou
 4. UpcomingEarnings
   - list of upcoming earnings
 
-Sources: www.finviz.com, us.econoday.com, www.swingtradesystems.com, www.seekingalpha.com
+Sources: [FinViz](www.finviz.com), [Econoday](us.econoday.com), [SwingTradeSystems](www.swingtradesystems.com), [SeekingAlpha](www.seekingalpha.com)
