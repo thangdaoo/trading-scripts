@@ -23,6 +23,10 @@ This project uses the following Python libraries:
 
 `git clone https://github.com/thangdaoo/trading-scripts.git`
 
+- install all the packages listed above
+
+`pip3 install 'package-name'`
+
 ## Run the scripts
 
 `python3 'file-name'`
