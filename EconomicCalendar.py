@@ -1,24 +1,22 @@
 import requests
 import re
-from datetime import date
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
+import pandas as pd
+import numpy as np
 
 url = 'https://us.econoday.com/byweek.asp?cust=us'
-
-curDate = date.today()
-curDate = curDate.strftime('%A %b %d')
-
-days = ['-----MONDAY-----', '-----TUESDAY-----', '-----WEDNESDAY-----', '-----THURSDAY-----', '-----FRIDAY-----']
-weekdayCounter = 0
-
 page = urlopen(url)
 html = page.read().decode('utf-8')
 soup = BeautifulSoup(html, "html.parser")
 
-print('----------------------------------------------------')
-print('TODAY\'S DATE: ' + curDate)
-print('----------------------------------------------------')
+week = []
+
+for garbage in soup.findAll('div', class_='econoitems'):
+    garbage.decompose()
+
+for garbage in soup.findAll('span', class_='banknotefont'):
+    garbage.decompose()
 
 for event in soup.find_all('td', class_='events'):
     eventName = event.text
@@ -28,22 +26,21 @@ for event in soup.find_all('td', class_='events'):
     eventName = eventName.replace('Global Economics', '')
     eventName = eventName.lstrip()
     eventName = re.split('(\d+\:\d+\s\w+\s\w\w)', eventName)
-    print(days[weekdayCounter]+'\n')
-    for index, piece in enumerate(eventName):
-        print(piece)
-        if index % 2 != 0:
-            print('-----')
-    weekdayCounter += 1
+    week.append(eventName)
 
+mon = {'Monday': week[0]}
+tues = {'Tuesday': week[1]}
+wed = {'Wednesday': week[2]}
+thurs = {'Thursday': week[3]}
+fri = {'Friday': week[4]}
 
-# Tried to remove unnecessary tags
+monday = pd.DataFrame(mon)
+tuesday = pd.DataFrame(tues)
+wednesday = pd.DataFrame(wed)
+thursday = pd.DataFrame(thurs)
+friday = pd.DataFrame(fri)
 
-# for event in soup.find_all('td', class_='events'):
-#     # print(soup.find('span', class_ = 'banknotefont'))
-#     event = event.prettify()
-#     print(event)
-#     print('----------')
+weekday_events = [monday,tuesday,wednesday,thursday,friday]
 
-# for garbage in soup.find_all('span', class_='banknotefont'):
-#     print(garbage)
-#     print('---------')
+for x in weekday_events:
+    print(x.to_string(index=False))
