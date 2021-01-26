@@ -15,8 +15,8 @@ release_times = []
         
 def getEarnings():
     while True:
-        page_num = input("Select a page: ")
-        if page_num.isdigit():
+        page_num = input("Select a page (starting at 1): ")
+        if page_num.isdigit() and int(page_num) > 0:
             break
 
     url = 'https://seekingalpha.com/earnings/earnings-calendar/' + page_num
