@@ -5,10 +5,12 @@ from urllib.request import urlopen
 import pandas as pd
 import numpy as np
 
+headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36',
+           'Upgrade-Insecure-Requests': '1', 'Cookie': 'v2=1495343816.182.19.234.142', 'Accept-Encoding': 'gzip, deflate, sdch',
+           'Referer': "https://us.econoday.com/byweek.asp?cust=us"}
 url = 'https://us.econoday.com/byweek.asp?cust=us'
-page = urlopen(url)
-html = page.read().decode('utf-8')
-soup = BeautifulSoup(html, "html.parser")
+req = requests.get(url, headers=headers)
+soup = BeautifulSoup(req.content, "html.parser")
 
 week = []
 
