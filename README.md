@@ -1,6 +1,6 @@
 # Trading Scripts
 
-Here are a couple of Python scripts I created to assist me in my day trading journey.
+During my venture to become a consistently profitable day trader, I created a couple of Python scripts to assist me in this journey.
 
 ## Requirements
 
@@ -22,6 +22,10 @@ This project uses the following Python libraries:
 - clone the repo
 
 `git clone https://github.com/thangdaoo/trading-scripts.git`
+
+- install all the packages listed above
+
+`pip3 install 'package-name'`
 
 ## Run the scripts
 
