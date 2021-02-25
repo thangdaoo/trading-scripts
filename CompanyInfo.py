@@ -3,11 +3,16 @@ import numpy as np
 import requests
 from bs4 import BeautifulSoup
 
+headers = {
+    'User-Agent': 'Mozilla/5.0 (Macintosh Intel Mac OS X 11_2_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.182 Safari/537.36',
+    'Upgrade-Insecure-Requests': '1',
+    'Cookie': 'v2=1495343816.182.19.234.142',
+    'Accept-Encoding': 'gzip, deflate, sdch',
+    'Referer': "http://finviz.com/quote.ashx?t="
+}
+
 def switch():
     try:
-        headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36',
-                'Upgrade-Insecure-Requests': '1', 'Cookie': 'v2=1495343816.182.19.234.142', 'Accept-Encoding': 'gzip, deflate, sdch',
-                'Referer': "http://finviz.com/quote.ashx?t="}
         while True:
             stock = input("Enter the stock ticker: ")
             if stock.isalpha():
