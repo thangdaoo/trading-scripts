@@ -40,6 +40,10 @@ This project uses the following Python libraries:
 `EconomicCalendar.py`
 
 - major economic events of the current trading week
+
+`InstantNews.py`
+
+- most recent, up to date news on any ticker
   
 `TradingDaysCalendar.py`
 
