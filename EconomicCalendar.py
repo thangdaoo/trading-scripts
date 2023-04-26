@@ -19,19 +19,12 @@ soup = BeautifulSoup(req.content, "html.parser")
 unformatted_data = []
 formatted_data = []
 
-for garbage in soup.findAll('div', class_='econoitems'):
+for garbage in soup.findAll(['div', 'span'], {'class': ['econoitems', 'banknotefont']}):
     garbage.decompose()
 
-for garbage in soup.findAll('span', class_='banknotefont'):
-    garbage.decompose()
-
+unformatted_data = []
 for event in soup.find_all('td', class_='events'):
-    eventName = event.text
-    eventName = eventName.replace('»', '')
-    eventName = eventName.replace('Market Focus', '')
-    eventName = eventName.replace('Market Reflections', '')
-    eventName = eventName.replace('Global Economics', '')
-    eventName = eventName.lstrip()
+    eventName = event.text.replace('»', '').replace('Market Focus', '').replace('Market Reflections', '').replace('Global Economics', '').lstrip()
     eventName = re.split('(\d+\:\d+\s\w+\s\w\w)', eventName)
     unformatted_data.append(eventName)
 
