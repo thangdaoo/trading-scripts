@@ -1,5 +1,3 @@
-import requests
-import re
 from datetime import date
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
