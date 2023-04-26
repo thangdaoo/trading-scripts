@@ -1,9 +1,8 @@
 import requests
 import re
 from bs4 import BeautifulSoup
-from urllib.request import urlopen
 import pandas as pd
-import numpy as np
+import datetime
 
 headers = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36',
@@ -12,12 +11,13 @@ headers = {
     'Accept-Encoding': 'gzip, deflate, sdch',
     'Referer': "https://us.econoday.com/byweek.asp?cust=us"
     }
-    
+
 url = 'https://us.econoday.com/byweek.asp?cust=us'
 req = requests.get(url, headers=headers)
 soup = BeautifulSoup(req.content, "html.parser")
 
-week = []
+unformatted_data = []
+formatted_data = []
 
 for garbage in soup.findAll('div', class_='econoitems'):
     garbage.decompose()
@@ -33,21 +33,23 @@ for event in soup.find_all('td', class_='events'):
     eventName = eventName.replace('Global Economics', '')
     eventName = eventName.lstrip()
     eventName = re.split('(\d+\:\d+\s\w+\s\w\w)', eventName)
-    week.append(eventName)
+    unformatted_data.append(eventName)
 
-mon = {'Monday': week[0]}
-tues = {'Tuesday': week[1]}
-wed = {'Wednesday': week[2]}
-thurs = {'Thursday': week[3]}
-fri = {'Friday': week[4]}
+days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']
 
-monday = pd.DataFrame(mon)
-tuesday = pd.DataFrame(tues)
-wednesday = pd.DataFrame(wed)
-thursday = pd.DataFrame(thurs)
-friday = pd.DataFrame(fri)
+for idx, day in enumerate(unformatted_data):
+    for i in range(0, len(day), 2):
+        if i+1 < len(day):
+            formatted_data.append([days[idx], day[i], day[i+1]])
 
-weekday_events = [monday,tuesday,wednesday,thursday,friday]
+df = pd.DataFrame(formatted_data, columns=['Day', 'Event', 'Time'])
 
-for x in weekday_events:
-    print(x.to_string(index=False))
+selection = input("Enter '1' to view this weeks events or '2' to view only today's events: ")
+if selection == '1':
+    print(df.to_string(index=False))
+elif selection == '2':
+    today = datetime.datetime.today()
+    day_of_week = today.strftime("%A")
+    todays_events = df.loc[df['Day'] == day_of_week]
+    todays_events = todays_events.drop(columns=['Day'])
+    print(todays_events.to_string(index=False))
