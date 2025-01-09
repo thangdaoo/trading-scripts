@@ -37,12 +37,17 @@ for idx, day in enumerate(unformatted_data):
 
 df = pd.DataFrame(formatted_data, columns=['Day', 'Event', 'Time'])
 
-selection = input("Enter '1' to view this weeks events or '2' to view only today's events: ")
-if selection == '1':
-    print(df.to_string(index=False))
-elif selection == '2':
-    today = datetime.datetime.today()
-    day_of_week = today.strftime("%A")
-    todays_events = df.loc[df['Day'] == day_of_week]
-    todays_events = todays_events.drop(columns=['Day'])
-    print(todays_events.to_string(index=False))
+while True:
+    selection = input("Enter '1' to view this week's events or '2' to view only today's events: ")
+    if selection == '1':
+        print(df.to_string(index=False))
+        break
+    elif selection == '2':
+        today = datetime.datetime.today()
+        day_of_week = today.strftime("%A")
+        todays_events = df.loc[df['Day'] == day_of_week]
+        todays_events = todays_events.drop(columns=['Day'])
+        print(todays_events.to_string(index=False))
+        break
+    else:
+        print("Invalid input. Please enter '1' or '2'.")
